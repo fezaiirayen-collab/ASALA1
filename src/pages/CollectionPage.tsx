@@ -5,6 +5,7 @@ import ProductGrid from "@/components/ProductGrid";
 import FilterSidebar from "@/components/FilterSidebar";
 import Button from "@/components/Button";
 import { useProducts } from "@/context/ProductContext";
+import { publicAsset } from "@/lib/publicAsset";
 
 const categories = ["Caftan", "Jebba", "Robe", "Accessoire"];
 const sizes = ["36", "38", "40", "42", "44", "S", "M", "L", "XL"];
@@ -151,7 +152,7 @@ const CollectionPage: React.FC = () => {
       <section className="asala-container pt-6 sm:pt-8 lg:pt-10">
         <div className="relative aspect-[16/9] min-h-[180px] overflow-hidden bg-[#f4f2ee] sm:aspect-[3/1] sm:min-h-[240px] lg:min-h-[320px]">
           <img
-            src={bannerImage}
+            src={publicAsset(bannerImage)}
             alt={isNewArrivals ? "Nouveautés ASALA" : "Collection ASALA"}
             className="absolute inset-0 h-full w-full object-cover object-[65%_center] sm:object-center"
           />

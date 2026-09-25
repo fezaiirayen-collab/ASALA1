@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { publicAsset } from "@/lib/publicAsset";
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
@@ -15,7 +16,7 @@ const ProductImage: React.FC<Props> = ({ fallbackSrc = "/hero-model.jpg", src, a
   return (
     <img
       {...props}
-      src={imageSrc}
+      src={imageSrc ? publicAsset(imageSrc) : undefined}
       alt={alt}
       onError={(event) => {
         if (imageSrc !== fallbackSrc) setImageSrc(fallbackSrc);
