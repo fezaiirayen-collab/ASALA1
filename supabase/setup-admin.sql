@@ -79,7 +79,7 @@ as $$
 $$;
 
 revoke all on function public.is_admin() from public;
-grant execute on function public.is_admin() to authenticated;
+grant execute on function public.is_admin() to anon, authenticated;
 
 -- Active l'utilisateur créé dans Authentication > Users.
 -- Aucun compte n'est promu automatiquement par email.

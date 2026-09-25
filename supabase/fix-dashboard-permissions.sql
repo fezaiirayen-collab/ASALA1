@@ -2,6 +2,8 @@
 -- À exécuter dans Supabase Dashboard > SQL Editor avec un rôle propriétaire.
 -- La fonction public.is_admin() doit déjà exister (admin-account.sql).
 
+grant execute on function public.is_admin() to anon, authenticated;
+
 grant select on public.categories, public.site_content to anon, authenticated;
 grant insert, update, delete on public.categories, public.site_content to authenticated;
 grant select on public.home_sections to anon, authenticated;

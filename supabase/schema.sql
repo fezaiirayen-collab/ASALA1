@@ -85,7 +85,7 @@ as $$
 $$;
 
 revoke all on function public.is_admin() from public;
-grant execute on function public.is_admin() to authenticated;
+grant execute on function public.is_admin() to anon, authenticated;
 
 drop policy if exists "Authenticated users can read products" on public.products;
 create policy "Authenticated users can read products"

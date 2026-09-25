@@ -30,7 +30,7 @@ as $$
 $$;
 
 revoke all on function public.is_admin() from public;
-grant execute on function public.is_admin() to authenticated;
+grant execute on function public.is_admin() to anon, authenticated;
 
 -- Active un compte Supabase choisi explicitement comme administrateur.
 -- Aucun compte n'est promu automatiquement par email.

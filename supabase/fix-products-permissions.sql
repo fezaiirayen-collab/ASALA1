@@ -1,6 +1,8 @@
 -- Correction des droits du catalogue produits.
 -- À exécuter dans Supabase Dashboard > SQL Editor avec un rôle propriétaire.
 
+grant execute on function public.is_admin() to anon, authenticated;
+
 create or replace view public.catalog_products as
 select
   id, name, category, price, original_price, images, color_images, description,
