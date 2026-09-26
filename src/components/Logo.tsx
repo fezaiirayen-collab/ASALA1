@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface Props {
   className?: string;
@@ -11,12 +11,13 @@ const Logo: React.FC<Props> = ({ className = "", size = "md", inverted = false }
   const arabicFontSize = size === "sm" ? "22px" : size === "lg" ? "36px" : "28px";
   const latinFontSize = size === "sm" ? "8px" : size === "lg" ? "12px" : "10px";
   const colorClass = inverted ? "text-white" : "text-black";
+  const isHomePage = useLocation().pathname === "/";
 
   return (
     <Link
       to="/"
       className={`inline-flex flex-col items-center justify-center leading-none group transition-opacity hover:opacity-75 select-none shrink-0 ${className}`}
-      aria-label="ASALA Maison de Couture - Accueil"
+      aria-label={`${isHomePage ? "KINZA" : "ASALA"} Maison de Couture - Accueil`}
     >
       <span
         className={`font-didone font-normal tracking-wide ${colorClass}`}
@@ -24,9 +25,21 @@ const Logo: React.FC<Props> = ({ className = "", size = "md", inverted = false }
           fontFamily: '"Bodoni Moda", "Amiri", Georgia, serif',
           fontSize: arabicFontSize,
           lineHeight: 1,
+          display: isHomePage ? "none" : undefined,
         }}
       >
         أصالة
+      </span>
+      <span
+        className={`font-didone font-normal tracking-wide ${colorClass}`}
+        style={{
+          fontFamily: '"Bodoni Moda", Georgia, serif',
+          fontSize: arabicFontSize,
+          lineHeight: 1,
+          display: isHomePage ? undefined : "none",
+        }}
+      >
+        KINZA
       </span>
       <span
         className={`font-sans font-medium uppercase mt-1 ${colorClass}`}
@@ -37,7 +50,7 @@ const Logo: React.FC<Props> = ({ className = "", size = "md", inverted = false }
           lineHeight: 1,
         }}
       >
-        ASALA
+        {isHomePage ? "MAISON KINZA" : "ASALA"}
       </span>
     </Link>
   );

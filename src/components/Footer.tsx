@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { Instagram, Facebook, Check, ChevronDown } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -10,6 +10,11 @@ const Footer: React.FC = () => {
   const [subscriptionError, setSubscriptionError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openMobileSection, setOpenMobileSection] = useState<string | null>(null);
+  const isHomePage = useLocation().pathname === "/";
+  const brandName = isHomePage ? "KINZA" : "ASALA";
+  const phone = isHomePage ? "+216 52 374 459" : "+216 71 000 000";
+  const phoneHref = phone.replace(/\s/g, "");
+  const contactEmail = isHomePage ? "contact@kinza.tn" : "contact@asala.tn";
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,8 +75,8 @@ const Footer: React.FC = () => {
               title: "Informations de Contact",
               content: (
                 <div className="flex flex-col gap-3 pb-5 text-[12px] text-black/65">
-                  <a href="tel:+21671000000">+216 71 000 000</a>
-                  <a href="mailto:contact@asala.tn">contact@asala.tn</a>
+                  <a href={`tel:${phoneHref}`}>{phone}</a>
+                  <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
                   <Link to="/contact">Nous contacter</Link>
                 </div>
               ),
@@ -125,7 +130,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-[12px] text-white/70 font-light">
               <li>
                 <Link to="/a-propos" className="hover:text-white transition-colors">
-                  La Maison ASALA
+                  La Maison {brandName}
                 </Link>
               </li>
               <li>
@@ -228,8 +233,8 @@ const Footer: React.FC = () => {
 
             <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-white/60 leading-relaxed">
               <p>Service Conciergerie :</p>
-              <p className="text-white font-medium mt-0.5">+216 71 000 000</p>
-              <p className="text-white/80">contact@asala.tn</p>
+              <p className="text-white font-medium mt-0.5">{phone}</p>
+              <p className="text-white/80">{contactEmail}</p>
             </div>
           </div>
 
@@ -245,7 +250,7 @@ const Footer: React.FC = () => {
             {subscribed ? (
               <div className="flex items-center gap-2 p-3 bg-white/10 border border-white/20 text-[11px] text-white">
                 <Check size={14} />
-                <span>Merci de votre inscription à la Maison ASALA.</span>
+                <span>Merci de votre inscription à la Maison {brandName}.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="space-y-2">
@@ -274,7 +279,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom copyright & legal */}
         <div className="hidden pt-8 flex-col items-center justify-between gap-4 text-[11px] font-light text-white/50 md:flex md:flex-row">
-          <p>© {new Date().getFullYear()} ASALA • Maison de Couture Traditionnelle Tunisienne. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} {brandName} • Maison de Couture Traditionnelle Tunisienne. Tous droits réservés.</p>
           <div className="flex flex-wrap gap-6">
             <Link to="/faq" className="hover:text-white transition-colors">
               Mentions Légales

@@ -1,6 +1,6 @@
 import React from "react";
 import { X, Search, Heart, User, ArrowRight, MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import { useCart } from "@/context/CartContext";
 
@@ -21,6 +21,9 @@ const defaultLinks = [
 
 const MobileMenu: React.FC<Props> = ({ isOpen, onClose, links = defaultLinks }) => {
   const { openSearch, favorites } = useCart();
+  const isHomePage = useLocation().pathname === "/";
+  const contactEmail = isHomePage ? "contact@kinza.tn" : "contact@asala.tn";
+  const phone = isHomePage ? "+216 52 374 459" : "+216 71 000 000";
 
   if (!isOpen) return null;
 
@@ -99,7 +102,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose, links = defaultLinks }) 
             <p className="flex items-center gap-1.5 font-normal">
               <MapPin size={12} strokeWidth={1.5} className="text-black" /> Livraison partout en Tunisie
             </p>
-            <p className="text-[10px] text-stone">contact@asala.tn • +216 71 000 000</p>
+            <p className="text-[10px] text-stone">{contactEmail} • {phone}</p>
           </div>
         </div>
       </div>

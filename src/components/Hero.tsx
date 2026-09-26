@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
           <img
             key={slide.image}
             src={publicAsset(slide.image)}
-            alt="Collection ASALA Mode Traditionnelle"
+            alt="Collection KINZA Mode Traditionnelle"
             fetchPriority="high"
             decoding="async"
             className={`hero-slide-image hero-slide-${slide.id} absolute inset-0 !h-full !w-full object-cover transition-opacity duration-700`}
@@ -109,7 +109,7 @@ const Hero: React.FC = () => {
             {/* 1. En-tête */}
             <header className="hero-header">
               <p className="hero-tagline">{slide.tagline}</p>
-              <div className="hero-mark">{slide.arabicTitle}</div>
+              <div className="hero-mark">KINZA</div>
               <h1 className="hero-title">
                 {slide.titleLines[0]}
                 <br />
