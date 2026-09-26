@@ -584,7 +584,7 @@ const AccountPage: React.FC = () => {
                 {savedSuccess && (
                   <div className="flex items-center gap-2 p-3 mb-6 bg-[#faf9f6] border border-black text-[12px] text-black">
                     <CheckCircle2 size={16} />
-                    <span>Vos informations ont Ã©tÃ© mises Ã  jour avec succÃ¨s.</span>
+                    <span>Vos informations ont ete mises a jour avec succes.</span>
                   </div>
                 )}
                 {profileError && <div className="mb-6 border border-red-700 bg-red-50 p-3 text-[12px] text-red-800">{profileError}</div>}
