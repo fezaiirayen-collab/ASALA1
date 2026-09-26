@@ -171,6 +171,7 @@ const CheckoutPage: React.FC = () => {
       });
 
       if (syncError) {
+        console.error("Order creation failed", syncError);
         setOrderSyncError("La commande n'a pas pu être validée. Vérifiez votre panier puis réessayez.");
         return;
       }
@@ -597,6 +598,12 @@ const CheckoutPage: React.FC = () => {
                     </label>
 
                   </div>
+
+                  {orderSyncError && (
+                    <p role="alert" className="mt-4 border border-red-700 bg-red-50 px-4 py-3 text-left text-[12px] text-red-900">
+                      {orderSyncError}
+                    </p>
+                  )}
 
                   <div className="flex flex-col gap-3 pt-4 sm:flex-row">
                     <button
