@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { useSiteContent } from "@/context/SiteContentContext";
+import { publicAsset } from "@/lib/publicAsset";
  
 interface Slide {
   id: string;
@@ -17,34 +18,34 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: "01",
-    tagline: "TRADITION — ÉLÉGANCE — INTEMPORALITÉ",
-    arabicTitle: "أصالة",
+    tagline: "TRADITION â€” Ã‰LÃ‰GANCE â€” INTEMPORALITÃ‰",
+    arabicTitle: "Ø£ØµØ§Ù„Ø©",
     titleLines: ["L'ART DU", "TRADITIONNEL"],
     description:
-      "Des pièces intemporelles, pensées pour aujourd’hui.\nL’héritage de la couture tunisienne sublimé dans une esthétique contemporaine.",
-    ctaText: "Découvrir la collection",
+      "Des piÃ¨ces intemporelles, pensÃ©es pour aujourdâ€™hui.\nLâ€™hÃ©ritage de la couture tunisienne sublimÃ© dans une esthÃ©tique contemporaine.",
+    ctaText: "DÃ©couvrir la collection",
     ctaLink: "/collection",
     image: "/hero-slide-01.png",
   },
   {
     id: "02",
-    tagline: "ÉDITION JEBBA — HAUTE COUTURE",
-    arabicTitle: "أصالة",
-    titleLines: ["SPLENDEUR", "& MAJESTÉ"],
+    tagline: "Ã‰DITION JEBBA â€” HAUTE COUTURE",
+    arabicTitle: "Ø£ØµØ§Ù„Ø©",
+    titleLines: ["SPLENDEUR", "& MAJESTÃ‰"],
     description:
-      "L’art de la jebba et du caftan d’apparat.\nBroderies au fil d'or et soies d'art pour vos célébrations les plus précieuses.",
+      "Lâ€™art de la jebba et du caftan dâ€™apparat.\nBroderies au fil d'or et soies d'art pour vos cÃ©lÃ©brations les plus prÃ©cieuses.",
     ctaText: "Explorer les jebbas",
     ctaLink: "/jebbas",
     image: "/hero-slide-02.png",
   },
   {
     id: "03",
-    tagline: "L'ESSENCE DU LIN — CRÉATION ARTISANALE",
-    arabicTitle: "أصالة",
-    titleLines: ["LA JEBBA", "RÉINVENTÉE"],
+    tagline: "L'ESSENCE DU LIN â€” CRÃ‰ATION ARTISANALE",
+    arabicTitle: "Ø£ØµØ§Ù„Ø©",
+    titleLines: ["LA JEBBA", "RÃ‰INVENTÃ‰E"],
     description:
-      "Lignes fluides, pureté des matières et finitions cousues main.\nLa noblesse de la jebba tunisienne dans son expression moderne.",
-    ctaText: "Voir les nouveautés",
+      "Lignes fluides, puretÃ© des matiÃ¨res et finitions cousues main.\nLa noblesse de la jebba tunisienne dans son expression moderne.",
+    ctaText: "Voir les nouveautÃ©s",
     ctaLink: "/nouveautes",
     image: "/hero-slide-03.png",
   },
@@ -82,28 +83,28 @@ const Hero: React.FC = () => {
  
   return (
     <section className="asala-container">
-      {/* .hero-frame = conteneur de référence pour les tailles en cqw (voir index.css) */}
+      {/* .hero-frame = conteneur de rÃ©fÃ©rence pour les tailles en cqw (voir index.css) */}
       <div className="hero-frame relative w-full overflow-hidden border-b border-black/10 bg-[#f4f2ee] aspect-[4/5] min-h-[420px] sm:aspect-[4/3] sm:min-h-0 lg:min-h-0 lg:aspect-[2/1]">
-        {/* Image partagée par tous les slides */}
+        {/* Image partagÃ©e par tous les slides */}
         <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
           <img
             key={slide.image}
-            src={slide.image}
+            src={publicAsset(slide.image)}
             alt="Collection ASALA Mode Traditionnelle"
             className={`hero-slide-image hero-slide-${slide.id} absolute inset-0 !h-full !w-full object-cover transition-opacity duration-700`}
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/hero-main.jpg";
+              (e.target as HTMLImageElement).src = publicAsset("/hero-main.jpg");
             }}
           />
         </div>
  
-        {/* Voile de lisibilité */}
+        {/* Voile de lisibilitÃ© */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#fbfaf8]/75 via-[#fbfaf8]/20 to-transparent pointer-events-none" />
  
-        {/* Contenu éditorial */}
+        {/* Contenu Ã©ditorial */}
         <div className="hero-content">
           <div className="hero-inner">
-            {/* 1. En-tête */}
+            {/* 1. En-tÃªte */}
             <header className="hero-header">
               <p className="hero-tagline">{slide.tagline}</p>
               <div className="hero-mark">{slide.arabicTitle}</div>
@@ -165,3 +166,4 @@ const Hero: React.FC = () => {
  
 export default Hero;
  
+
