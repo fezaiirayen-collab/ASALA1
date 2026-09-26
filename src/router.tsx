@@ -1,4 +1,5 @@
 // src/router.tsx
+import React, { useEffect } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "@/layouts/MainLayout";
 import HomePage from "@/pages/HomePage";
@@ -13,6 +14,20 @@ import CheckoutPage from "@/pages/CheckoutPage";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import FaqPage from "@/pages/FaqPage";
+
+const LocalAdminRedirect: React.FC = () => {
+  useEffect(() => {
+    if (import.meta.env.DEV) window.location.replace("http://localhost:5174/");
+  }, []);
+
+  if (!import.meta.env.DEV) return <Navigate to="/" replace />;
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-[#f4f2ee] text-[12px] uppercase tracking-[0.14em] text-stone">
+      Ouverture du tableau de bordâ€¦
+    </div>
+  );
+};
 
 const router = createBrowserRouter(
   [
@@ -53,6 +68,9 @@ const router = createBrowserRouter(
       { path: "contact", element: <ContactPage /> },
       { path: "faq", element: <FaqPage /> },
 
+      // Raccourci local vers le dashboard de gestion sÃ©parÃ©.
+      { path: "vrai-admin", element: <LocalAdminRedirect /> },
+
       // Fallback
       { path: "*", element: <Navigate to="/" replace /> },
       ],
@@ -62,3 +80,4 @@ const router = createBrowserRouter(
 );
 
 export default router;
+
