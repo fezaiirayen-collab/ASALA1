@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/ASALA1/" : "/",
+  base: command === "build" ? (process.env.VITE_BASE_PATH || "/ASALA1/") : "/",
   plugins: [
     react(),
     tailwindcss(),
@@ -20,3 +20,4 @@ export default defineConfig(({ command }) => ({
     host: true,
   },
 }));
+
