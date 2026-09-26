@@ -114,7 +114,7 @@ textarea:focus {
 .topbar-marquee-track {
   display: inline-flex;
   width: max-content;
-  animation: topbar-marquee-scroll 18s linear infinite;
+  animation: topbar-marquee-scroll 22s linear infinite;
   will-change: transform;
 }
 
@@ -133,9 +133,9 @@ textarea:focus {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 767px) {
   .topbar-marquee-track {
-    animation: none;
+    animation-duration: 24s;
   }
 }
 

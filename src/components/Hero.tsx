@@ -91,6 +91,8 @@ const Hero: React.FC = () => {
             key={slide.image}
             src={publicAsset(slide.image)}
             alt="Collection ASALA Mode Traditionnelle"
+            fetchPriority="high"
+            decoding="async"
             className={`hero-slide-image hero-slide-${slide.id} absolute inset-0 !h-full !w-full object-cover transition-opacity duration-700`}
             onError={(e) => {
               (e.target as HTMLImageElement).src = publicAsset("/hero-main.jpg");

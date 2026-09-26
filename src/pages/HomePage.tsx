@@ -102,6 +102,7 @@ const HomePage: React.FC = () => {
                 <ProductImage
                   src={tile.imageUrl}
                   alt={tile.title}
+                  loading="lazy"
                   className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
@@ -208,6 +209,7 @@ const HomePage: React.FC = () => {
                 <ProductImage
                   src={section.imageUrl}
                   alt={section.title}
+                  loading="lazy"
                   className="h-full w-full object-cover object-center"
                 />
               </div>
@@ -330,6 +332,7 @@ const HomePage: React.FC = () => {
         <ProductImage
           src={content.home_occasion_image}
           alt="Collection Jebbas Haute Couture ASALA"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-black/40" />

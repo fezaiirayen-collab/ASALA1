@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: RÃ©cupÃ©rer le code
+      - name: Récupérer le code
         uses: actions/checkout@v4
       - name: Configurer GitHub Pages
         uses: actions/configure-pages@v5
@@ -27,9 +27,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Installer les dÃ©pendances
+      - name: Installer les dépendances
         run: npm ci
-      - name: VÃ©rifier la configuration Supabase
+      - name: Vérifier la configuration Supabase
         run: |
           test -n "$VITE_SUPABASE_URL"
           test -n "$VITE_SUPABASE_PUBLISHABLE_KEY"
@@ -37,9 +37,9 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
           VITE_BASE_PATH: /ASALA1/
-      - name: VÃ©rifier TypeScript
+      - name: Vérifier TypeScript
         run: npm run typecheck
-      - name: VÃ©rifier le lint
+      - name: Vérifier le lint
         run: npm run lint
       - name: Construire la boutique
         run: npm run build
@@ -47,9 +47,9 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
           VITE_BASE_PATH: /ASALA1/
-      - name: PrÃ©parer le fallback des routes React
+      - name: Préparer le fallback des routes React
         run: cp dist/index.html dist/404.html
-      - name: PrÃ©parer lâ€™artefact Pages
+      - name: Préparer l’artefact Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -64,4 +64,3 @@ jobs:
       - name: Publier sur GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

@@ -24,7 +24,7 @@ const LocalAdminRedirect: React.FC = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f4f2ee] text-[12px] uppercase tracking-[0.14em] text-stone">
-      Ouverture du tableau de bordâ€¦
+      Ouverture du tableau de bord…
     </div>
   );
 };
@@ -68,7 +68,7 @@ const router = createBrowserRouter(
       { path: "contact", element: <ContactPage /> },
       { path: "faq", element: <FaqPage /> },
 
-      // Raccourci local vers le dashboard de gestion sÃ©parÃ©.
+      // Raccourci local vers le dashboard de gestion séparé.
       { path: "vrai-admin", element: <LocalAdminRedirect /> },
 
       // Fallback
@@ -80,4 +80,3 @@ const router = createBrowserRouter(
 );
 
 export default router;
-
