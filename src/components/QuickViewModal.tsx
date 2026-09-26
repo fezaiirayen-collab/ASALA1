@@ -43,7 +43,7 @@ const QuickViewModal: React.FC = () => {
         <button
           onClick={closeQuickView}
           className="absolute top-4 right-4 z-10 p-1.5 bg-white text-black border border-black/20 hover:border-black transition-colors cursor-pointer"
-          aria-label="Fermer l'aperÃ§u"
+          aria-label="Fermer l'aperçu"
         >
           <X size={18} strokeWidth={1.5} />
         </button>
@@ -148,7 +148,7 @@ const QuickViewModal: React.FC = () => {
                 onClick={closeQuickView}
                 className="flex-1 border border-black py-2.5 text-[11px] uppercase tracking-wider text-center hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-1.5"
               >
-                <span>Voir dÃ©tails</span>
+                <span>Voir détails</span>
                 <ArrowRight size={13} strokeWidth={1.5} />
               </Link>
             </div>

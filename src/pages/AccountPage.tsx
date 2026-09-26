@@ -34,11 +34,11 @@ type AccountOrderSummary = {
 
 const orderStatusLabels: Record<string, string> = {
   pending: "En attente",
-  confirmed: "ConfirmÃ©e",
-  preparing: "En prÃ©paration",
-  shipped: "ExpÃ©diÃ©e",
-  delivered: "LivrÃ©e",
-  cancelled: "AnnulÃ©e",
+  confirmed: "Confirmée",
+  preparing: "En préparation",
+  shipped: "Expédiée",
+  delivered: "Livrée",
+  cancelled: "Annulée",
 };
 
 const hasStrongPassword = (value: string) =>
@@ -191,7 +191,7 @@ const AccountPage: React.FC = () => {
     const loadSession = async () => {
       const { data, error } = await authClient.auth.getSession();
       if (!mounted) return;
-      if (error) setAuthError("Impossible de vÃ©rifier votre session.");
+      if (error) setAuthError("Impossible de vérifier votre session.");
       if (data.session) {
         setSession(data.session);
         setAuthEmail(data.session.user.email || "");
@@ -218,11 +218,11 @@ const AccountPage: React.FC = () => {
   const handleAuthSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!supabase) {
-      setAuthError("Supabase n'est pas configurÃ©.");
+      setAuthError("Supabase n'est pas configuré.");
       return;
     }
     if (authMode === "signup" && !hasStrongPassword(authPassword)) {
-      setAuthError("Le mot de passe doit contenir 12 caractÃ¨res, une majuscule, une minuscule et un chiffre.");
+      setAuthError("Le mot de passe doit contenir 12 caractères, une majuscule, une minuscule et un chiffre.");
       return;
     }
     if (authMode === "signup" && authPassword !== authPasswordConfirmation) {
@@ -240,7 +240,7 @@ const AccountPage: React.FC = () => {
         password: authPassword,
         options: { data: { first_name: authFirstName.trim(), last_name: authLastName.trim(), phone: authPhone.trim(), phone_secondary: authSecondaryPhone.trim(), gender: authGender, birth_date: authBirthDate } },
       });
-      if (error) setAuthError("Inscription ou connexion impossible. VÃ©rifiez vos informations.");
+      if (error) setAuthError("Inscription ou connexion impossible. Vérifiez vos informations.");
       else if (data.session) {
         setSession(data.session);
         await persistCustomer(data.session, {
@@ -258,7 +258,7 @@ const AccountPage: React.FC = () => {
           postalCode: "",
         });
       } else {
-        setAuthNotice("Votre compte est crÃ©Ã©. VÃ©rifiez votre email pour confirmer votre inscription, puis connectez-vous.");
+        setAuthNotice("Votre compte est créé. Vérifiez votre email pour confirmer votre inscription, puis connectez-vous.");
         setAuthMode("login");
       }
     } else {
@@ -266,7 +266,7 @@ const AccountPage: React.FC = () => {
         email: authEmail.trim(),
         password: authPassword,
       });
-      if (error) setAuthError("Inscription ou connexion impossible. VÃ©rifiez vos informations.");
+      if (error) setAuthError("Inscription ou connexion impossible. Vérifiez vos informations.");
       else if (data.session) {
         setSession(data.session);
         await loadCustomer(data.session);
@@ -278,15 +278,15 @@ const AccountPage: React.FC = () => {
   const handleForgotPassword = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!supabase || !authEmail.trim()) {
-      setAuthError("Saisissez votre adresse email pour recevoir le lien de rÃ©initialisation.");
+      setAuthError("Saisissez votre adresse email pour recevoir le lien de réinitialisation.");
       return;
     }
     setIsSendingReset(true);
     setAuthError("");
     const { error } = await supabase.auth.resetPasswordForEmail(authEmail.trim(), { redirectTo: getPublicUrl("reset-password") });
     setIsSendingReset(false);
-    if (error) setAuthError("Impossible d'envoyer le lien de rÃ©initialisation.");
-    else { setAuthNotice("Un lien de rÃ©initialisation a Ã©tÃ© envoyÃ© Ã  votre adresse email."); setShowForgotPassword(false); }
+    if (error) setAuthError("Impossible d'envoyer le lien de réinitialisation.");
+    else { setAuthNotice("Un lien de réinitialisation a été envoyé à votre adresse email."); setShowForgotPassword(false); }
   };
 
   const handleSignOut = async () => {
@@ -296,7 +296,7 @@ const AccountPage: React.FC = () => {
     if (supabase) {
       const { error } = await supabase.auth.signOut({ scope: "local" });
       if (error) {
-        setSignOutError("Impossible de fermer la session. RÃ©essayez.");
+        setSignOutError("Impossible de fermer la session. Réessayez.");
         setIsSigningOut(false);
         return;
       }
@@ -308,7 +308,7 @@ const AccountPage: React.FC = () => {
   if (isCheckingSession) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-white text-[11px] uppercase tracking-[0.14em] text-stone">
-        VÃ©rification de votre sessionâ€¦
+        Vérification de votre session…
       </div>
     );
   }
@@ -318,11 +318,11 @@ const AccountPage: React.FC = () => {
       <div className="min-h-screen bg-white">
         <section className="border-b border-black/10 bg-[#faf9f6] py-10 text-center lg:py-14">
           <div className="asala-container">
-            <span className="text-[11px] uppercase tracking-[0.2em] text-stone">Espace PrivilÃ¨ge</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-stone">Espace Privilège</span>
             <h1 className="mt-2 text-[34px] uppercase tracking-tight" style={{ fontFamily: '"Bodoni Moda", Georgia, serif' }}>
               MON COMPTE
             </h1>
-            <p className="mt-2 text-[12px] text-stone">Connectez-vous ou crÃ©ez votre compte ASALA.</p>
+            <p className="mt-2 text-[12px] text-stone">Connectez-vous ou créez votre compte ASALA.</p>
           </div>
         </section>
 
@@ -341,7 +341,7 @@ const AccountPage: React.FC = () => {
                 onClick={() => { setAuthMode("signup"); setAuthError(""); setAuthNotice(""); }}
                 className={`border-b-2 pb-3 text-[11px] uppercase tracking-[0.14em] ${authMode === "signup" ? "border-black font-semibold" : "border-transparent text-stone"}`}
               >
-                CrÃ©er un compte
+                Créer un compte
               </button>
             </div>
 
@@ -352,7 +352,7 @@ const AccountPage: React.FC = () => {
               {authMode === "signup" && (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label>
-                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">PrÃ©nom</span>
+                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Prénom</span>
                     <input value={authFirstName} onChange={(event) => setAuthFirstName(event.target.value)} className="w-full" required />
                   </label>
                   <label>
@@ -364,17 +364,17 @@ const AccountPage: React.FC = () => {
               {authMode === "signup" && (
                 <div className="space-y-4">
                   <label className="block">
-                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">TÃ©lÃ©phone</span>
+                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Téléphone</span>
                     <input type="tel" value={authPhone} onChange={(event) => setAuthPhone(event.target.value)} className="w-full" autoComplete="tel" />
                   </label>
                   <label className="block">
-                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">TÃ©lÃ©phone supplÃ©mentaire</span>
+                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Téléphone supplémentaire</span>
                     <input type="tel" value={authSecondaryPhone} onChange={(event) => setAuthSecondaryPhone(event.target.value)} className="w-full" autoComplete="tel" />
                   </label>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <label>
                       <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Sexe</span>
-                      <select value={authGender} onChange={(event) => setAuthGender(event.target.value)} className="w-full bg-white"><option value="">SÃ©lectionner</option><option value="Homme">Homme</option><option value="Femme">Femme</option></select>
+                      <select value={authGender} onChange={(event) => setAuthGender(event.target.value)} className="w-full bg-white"><option value="">Sélectionner</option><option value="Homme">Homme</option><option value="Femme">Femme</option></select>
                     </label>
                     <label>
                       <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Date de naissance *</span>
@@ -392,16 +392,16 @@ const AccountPage: React.FC = () => {
                 <input type="password" value={authPassword} onChange={(event) => setAuthPassword(event.target.value)} className="w-full" autoComplete={authMode === "login" ? "current-password" : "new-password"} minLength={6} required />
               </label>
               {authMode === "signup" && <label className="block"><span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Confirmer le mot de passe</span><input type="password" value={authPasswordConfirmation} onChange={(event) => setAuthPasswordConfirmation(event.target.value)} className="w-full" autoComplete="new-password" minLength={6} required /></label>}
-              {authMode === "login" && <button type="button" onClick={() => { setShowForgotPassword((current) => !current); setAuthError(""); }} className="text-[11px] text-stone underline hover:text-black">Mot de passe oubliÃ© ?</button>}
+              {authMode === "login" && <button type="button" onClick={() => { setShowForgotPassword((current) => !current); setAuthError(""); }} className="text-[11px] text-stone underline hover:text-black">Mot de passe oublié ?</button>}
               <button type="submit" disabled={isSubmittingAuth} className="asala-btn-solid w-full justify-center disabled:opacity-50">
-                {isSubmittingAuth ? "Veuillez patienterâ€¦" : authMode === "login" ? "Se connecter" : "CrÃ©er mon compte"}
+                {isSubmittingAuth ? "Veuillez patienter…" : authMode === "login" ? "Se connecter" : "Créer mon compte"}
               </button>
             </form>
 
             {authMode === "login" && showForgotPassword && <form onSubmit={handleForgotPassword} className="mt-5 space-y-3 border-t border-black/10 pt-5">
-              <p className="text-[12px] text-stone">Entrez votre email pour recevoir un lien de rÃ©initialisation.</p>
+              <p className="text-[12px] text-stone">Entrez votre email pour recevoir un lien de réinitialisation.</p>
               <input type="email" value={authEmail} onChange={(event) => setAuthEmail(event.target.value)} className="w-full" placeholder="Adresse email" required />
-              <button type="submit" disabled={isSendingReset} className="asala-btn w-full justify-center">{isSendingReset ? "Envoi en coursâ€¦" : "Envoyer le lien"}</button>
+              <button type="submit" disabled={isSendingReset} className="asala-btn w-full justify-center">{isSendingReset ? "Envoi en cours…" : "Envoyer le lien"}</button>
             </form>}
           </div>
         </div>
@@ -419,7 +419,7 @@ const AccountPage: React.FC = () => {
       shippingAddress: {
         firstName: address.firstName || customerParts[0] || "",
         lastName: address.lastName || customerParts.slice(1).join(" "),
-        address: address.address || address.street || "Adresse non renseignÃ©e",
+        address: address.address || address.street || "Adresse non renseignée",
         city: address.city || "",
         governorate: address.governorate || "",
       },
@@ -433,7 +433,7 @@ const AccountPage: React.FC = () => {
       <section className="border-b border-black/10 bg-[#faf9f6] py-10 lg:py-14 text-center">
         <div className="asala-container">
           <span className="text-[11px] uppercase tracking-[0.2em] text-stone font-medium block mb-1">
-            Espace PrivilÃ¨ge
+            Espace Privilège
           </span>
           <h1
             className="text-[34px] sm:text-[42px] font-normal uppercase tracking-tight text-black"
@@ -511,7 +511,7 @@ const AccountPage: React.FC = () => {
               className="mt-4 flex w-full items-center gap-2 border-t border-black/10 px-4 py-4 text-left text-[11px] uppercase tracking-[0.14em] text-stone transition-colors hover:text-black disabled:opacity-50"
             >
               <LogOut size={15} strokeWidth={1.5} />
-              {isSigningOut ? "DÃ©connexionâ€¦" : "DÃ©connexion"}
+              {isSigningOut ? "Déconnexion…" : "Déconnexion"}
             </button>
           </aside>
 
@@ -533,15 +533,15 @@ const AccountPage: React.FC = () => {
                 <div className="space-y-6">
                   {displayOrders.length === 0 ? (
                     <div className="border border-black/10 bg-[#faf9f6] p-10 text-center text-[13px] text-stone">
-                      Vous n'avez pas encore passÃ© de commande.
+                      Vous n'avez pas encore passé de commande.
                     </div>
                   ) : displayOrders.map((order) => (
                     <div key={order.id} className="border border-black p-6 bg-white space-y-4">
                       <div className="flex flex-wrap justify-between items-center gap-2 pb-4 border-b border-black/10 text-[12px]">
                         <div>
-                          <span className="text-stone">RÃ©f : </span>
+                          <span className="text-stone">Réf : </span>
                           <strong className="text-black font-semibold">{order.id}</strong>
-                          <span className="text-stone ml-3">â€¢ {order.date}</span>
+                          <span className="text-stone ml-3">• {order.date}</span>
                         </div>
                         <span className="bg-black text-white px-3 py-1 text-[10px] uppercase tracking-widest font-medium">
                           {order.status}
@@ -562,7 +562,7 @@ const AccountPage: React.FC = () => {
 
                       <div className="flex justify-between items-center pt-3 border-t border-black/10">
                         <span className="text-[11px] uppercase tracking-wider text-stone font-medium">
-                          Total rÃ©glÃ©
+                          Total réglé
                         </span>
                         <span className="text-[16px] font-semibold text-black">
                           {order.total} TND
@@ -593,7 +593,7 @@ const AccountPage: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[11px] uppercase tracking-[0.14em] text-stone font-medium mb-1.5 block">
-                        PrÃ©nom
+                        Prénom
                       </label>
                       <input
                         type="text"
@@ -629,7 +629,7 @@ const AccountPage: React.FC = () => {
 
                   <div>
                     <label className="text-[11px] uppercase tracking-[0.14em] text-stone font-medium mb-1.5 block">
-                      NumÃ©ro de TÃ©lÃ©phone
+                      Numéro de Téléphone
                     </label>
                     <input
                       type="tel"
@@ -641,12 +641,12 @@ const AccountPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <label>
-                      <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">TÃ©lÃ©phone supplÃ©mentaire</span>
+                      <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Téléphone supplémentaire</span>
                       <input type="tel" value={profile.phoneSecondary} onChange={(event) => setProfile({ ...profile, phoneSecondary: event.target.value })} className="w-full border border-black px-4 py-3 text-[13px] outline-none" />
                     </label>
                     <label>
                       <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Sexe</span>
-                      <select value={profile.gender} onChange={(event) => setProfile({ ...profile, gender: event.target.value })} className="w-full bg-white border border-black px-4 py-3 text-[13px] outline-none"><option value="">SÃ©lectionner</option><option value="Homme">Homme</option><option value="Femme">Femme</option></select>
+                      <select value={profile.gender} onChange={(event) => setProfile({ ...profile, gender: event.target.value })} className="w-full bg-white border border-black px-4 py-3 text-[13px] outline-none"><option value="">Sélectionner</option><option value="Homme">Homme</option><option value="Femme">Femme</option></select>
                     </label>
                   </div>
 
@@ -677,7 +677,7 @@ const AccountPage: React.FC = () => {
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <label className="sm:col-span-2">
                       <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Adresse</span>
-                      <input value={profile.address} onChange={(event) => setProfile({ ...profile, address: event.target.value })} className="w-full" placeholder="Rue et numÃ©ro" />
+                      <input value={profile.address} onChange={(event) => setProfile({ ...profile, address: event.target.value })} className="w-full" placeholder="Rue et numéro" />
                     </label>
                     <label>
                       <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-stone">Appartement</span>
@@ -707,12 +707,12 @@ const AccountPage: React.FC = () => {
             {activeTab === "favorites" && (
               <div className="space-y-6">
                 <h2 className="text-[12px] uppercase tracking-[0.16em] font-semibold text-black pb-3 border-b border-black/10">
-                  Vos piÃ¨ces favorites ({favorites.length})
+                  Vos pièces favorites ({favorites.length})
                 </h2>
 
                 {favorites.length === 0 ? (
                   <p className="text-[13px] text-stone py-8 text-center">
-                    Aucune piÃ¨ce enregistrÃ©e pour le moment.
+                    Aucune pièce enregistrée pour le moment.
                   </p>
                 ) : (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
