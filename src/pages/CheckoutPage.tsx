@@ -49,6 +49,7 @@ const CheckoutPage: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const [createdOrder, setCreatedOrder] = useState<Order | null>(null);
   const [orderSyncError, setOrderSyncError] = useState("");
+  const [orderSyncBackendError, setOrderSyncBackendError] = useState("");
   const [promoInput, setPromoInput] = useState("");
   const [promoError, setPromoError] = useState("");
   const [isApplyingPromo, setIsApplyingPromo] = useState(false);
@@ -151,6 +152,7 @@ const CheckoutPage: React.FC = () => {
     };
 
     setOrderSyncError("");
+    setOrderSyncBackendError("");
 
     if (supabase) {
       const { error: syncError } = await supabase.rpc("create_order", {
@@ -172,6 +174,7 @@ const CheckoutPage: React.FC = () => {
 
       if (syncError) {
         console.error("Order creation failed", syncError);
+        setOrderSyncBackendError(syncError.message || "");
         setOrderSyncError("La commande n'a pas pu être validée. Vérifiez votre panier puis réessayez.");
         return;
       }
@@ -243,9 +246,9 @@ const CheckoutPage: React.FC = () => {
         {step === 5 && createdOrder ? (
           /* Step 5: Confirmation Success */
           <div className="max-w-2xl mx-auto border border-black p-8 sm:p-12 text-center bg-white">
-            {orderSyncError && (
+            {(orderSyncBackendError || orderSyncError) && (
               <p className="mb-5 border border-amber-700 bg-amber-50 px-4 py-3 text-left text-[12px] text-amber-900">
-                {orderSyncError}
+                {orderSyncBackendError || orderSyncError}
               </p>
             )}
             <CheckCircle size={48} strokeWidth={1.2} className="mx-auto text-black mb-4" />
@@ -599,9 +602,9 @@ const CheckoutPage: React.FC = () => {
 
                   </div>
 
-                  {orderSyncError && (
+                  {(orderSyncBackendError || orderSyncError) && (
                     <p role="alert" className="mt-4 border border-red-700 bg-red-50 px-4 py-3 text-left text-[12px] text-red-900">
-                      {orderSyncError}
+                      {orderSyncBackendError || orderSyncError}
                     </p>
                   )}
 
