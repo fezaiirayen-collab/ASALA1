@@ -53,6 +53,7 @@ const CheckoutPage: React.FC = () => {
   const [promoInput, setPromoInput] = useState("");
   const [promoError, setPromoError] = useState("");
   const [isApplyingPromo, setIsApplyingPromo] = useState(false);
+  const [addressError, setAddressError] = useState("");
 
   // Form State
   const [formData, setFormData] = useState<ShippingAddress>({
@@ -130,6 +131,16 @@ const CheckoutPage: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (addressError) setAddressError("");
+  };
+
+  const handleContinueToShipping = () => {
+    if (formData.address.trim().length < 3 || formData.city.trim().length < 2 || formData.governorate.trim().length < 2) {
+      setAddressError("Veuillez renseigner une adresse, une ville et un gouvernorat valides.");
+      return;
+    }
+    setAddressError("");
+    setStep(3);
   };
 
   const handleFinalizeOrder = async () => {
@@ -160,7 +171,15 @@ const CheckoutPage: React.FC = () => {
         p_customer_name: `${formData.firstName} ${formData.lastName}`,
         p_email: formData.email,
         p_phone: formData.phone,
-        p_address: formData,
+        p_address: {
+          ...formData,
+          address: formData.address.trim(),
+          street: formData.address.trim(),
+          apartment: formData.apartment?.trim() || null,
+          city: formData.city.trim(),
+          governorate: formData.governorate.trim(),
+          postalCode: formData.postalCode.trim(),
+        },
         p_shipping_method: shippingMethod,
         p_payment_method: paymentMethod,
         p_items: cart.map((item) => ({
@@ -474,6 +493,12 @@ const CheckoutPage: React.FC = () => {
                     </div>
                   </div>
 
+                  {addressError && (
+                    <p role="alert" className="border border-red-700 bg-red-50 px-4 py-3 text-left text-[12px] text-red-900">
+                      {addressError}
+                    </p>
+                  )}
+
                   <div className="flex flex-col gap-3 pt-4 sm:flex-row">
                     <button
                       onClick={() => setStep(1)}
@@ -482,7 +507,7 @@ const CheckoutPage: React.FC = () => {
                       Retour
                     </button>
                     <button
-                      onClick={() => setStep(3)}
+                      onClick={handleContinueToShipping}
                       className="min-w-0 flex-1 asala-btn-solid whitespace-normal py-3.5 text-center"
                     >
                       <span>Continuer vers le mode d'expédition</span>
