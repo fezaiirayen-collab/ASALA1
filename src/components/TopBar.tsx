@@ -50,7 +50,7 @@ const TopBar: React.FC = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram KINZA"
+              aria-label="Instagram ASALA"
               className="text-black hover:opacity-60 transition-opacity"
             >
               <Instagram size={13} strokeWidth={1.5} />
@@ -59,7 +59,7 @@ const TopBar: React.FC = () => {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook KINZA"
+              aria-label="Facebook ASALA"
               className="text-black hover:opacity-60 transition-opacity"
             >
               <Facebook size={13} strokeWidth={1.5} />
@@ -68,7 +68,7 @@ const TopBar: React.FC = () => {
               href="https://pinterest.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Pinterest KINZA"
+              aria-label="Pinterest ASALA"
               className="text-black hover:opacity-60 transition-opacity"
             >
               <span className="text-[12px] font-serif font-bold leading-none">P</span>

@@ -48,7 +48,7 @@ const ContactPage: React.FC = () => {
             className="text-[32px] lg:text-[42px] font-normal uppercase tracking-tight text-black mb-2"
             style={{ fontFamily: '"Bodoni Moda", Georgia, serif' }}
           >
-            CONTACTER LA MAISON KINZA
+            CONTACTER LA MAISON ASALA
           </h1>
           <p className="text-[13px] text-stone font-normal max-w-lg mx-auto leading-relaxed">
             Notre équipe vous accompagne pour vos commandes, conseils de taille et demandes de confection sur-mesure.
@@ -65,7 +65,7 @@ const ContactPage: React.FC = () => {
                 <h2 className="text-[11px] uppercase font-semibold text-black tracking-[0.16em] mb-2 flex items-center gap-2">
                   <MapPin size={15} strokeWidth={1.5} /> ATELIER & BOUTIQUE
                 </h2>
-                <p className="text-black font-medium">Maison KINZA</p>
+                <p className="text-black font-medium">Maison ASALA</p>
                 <p>Rue du Lac d'Annecy, Les Berges du Lac</p>
                 <p>1053 Tunis, Tunisie</p>
               </div>
@@ -74,8 +74,8 @@ const ContactPage: React.FC = () => {
                 <h2 className="text-[11px] uppercase font-semibold text-black tracking-[0.16em] mb-2 flex items-center gap-2">
                   <Phone size={15} strokeWidth={1.5} /> TÉLÉPHONE & CONCIERGERIE
                 </h2>
-                <p>Service Clients : <span className="text-black font-medium">+216 52 374 459</span></p>
-                <p>Conseils Sur-Mesure : <span className="text-black font-medium">+216 52 374 459</span></p>
+                <p>Service Clients : <span className="text-black font-medium">+216 71 000 000</span></p>
+                <p>Conseils Sur-Mesure : <span className="text-black font-medium">+216 98 123 456</span></p>
                 <p className="text-[11px] text-stone mt-1">Du lundi au samedi, de 10h à 19h</p>
               </div>
 
@@ -83,8 +83,8 @@ const ContactPage: React.FC = () => {
                 <h2 className="text-[11px] uppercase font-semibold text-black tracking-[0.16em] mb-2 flex items-center gap-2">
                   <Mail size={15} strokeWidth={1.5} /> CORRESPONDANCE
                 </h2>
-                <p>contact@kinza.tn</p>
-                <p>commandes@kinza.tn</p>
+                <p>contact@asala.tn</p>
+                <p>commandes@asala.tn</p>
               </div>
             </div>
           </div>

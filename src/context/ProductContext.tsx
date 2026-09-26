@@ -120,7 +120,7 @@ export const ProductProvider: React.FC<React.PropsWithChildren> = ({ children })
   const refreshProducts = useCallback(async () => {
     if (!supabase) {
       setIsLoading(false);
-      setError("Le catalogue est temporairement indisponible.");
+      setError("Supabase n'est pas configuré.");
       return;
     }
 

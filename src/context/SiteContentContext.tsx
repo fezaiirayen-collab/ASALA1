@@ -3,12 +3,6 @@ import { supabase } from "@/lib/supabase";
 
 export type SiteContentValues = Record<string, string>;
 
-const normalizeBrandText = (value: string): string => value
-  .replace(/\bASALA\b/gi, "KINZA")
-  .replace(/asala\.tn/gi, "kinza.tn")
-  .replace(/\+216\s*71\s*000\s*000/g, "+216 52 374 459")
-  .replace(/\+216\s*98\s*123\s*456/g, "+216 52 374 459");
-
 export type HomeSection = {
   id: string;
   eyebrow: string;
@@ -39,18 +33,18 @@ const defaultContent: SiteContentValues = {
   home_occasion_title: "L'ART DE LA JEBBA",
   home_occasion_description: "Mariages, fiançailles et célébrations prestigieuses.",
   about_hero_image: "/hero-model.jpg",
-  about_hero_eyebrow: "Maison KINZA",
-  about_hero_title: "LA MAISON KINZA",
+  about_hero_eyebrow: "Maison ASALA",
+  about_hero_title: "LA MAISON ASALA",
   about_hero_description: "L'héritage de la haute couture tunisienne sublimé dans une modernité intemporelle.",
   about_intro_eyebrow: "Origines & Philosophie",
   about_intro_title: "NOTRE HISTOIRE & NOTRE VISION",
-  about_intro_paragraph_1: "Fondée à Tunis, la Maison KINZA — signifiant authenticité et noblesse d'origine en arabe — est née d'une passion inconditionnelle pour le patrimoine vestimentaire tunisien et méditerranéen.",
-  about_intro_paragraph_2: "Face à l'uniformisation de la mode mondiale, KINZA propose une vision singulière : des créations de grand apparat et des silhouettes quotidiennes qui célèbrent la richesse des broderies tunisiennes, la pureté des lins naturels et la splendeur des soies les plus précieuses.",
+  about_intro_paragraph_1: "Fondée à Tunis, la Maison ASALA — signifiant authenticité et noblesse d'origine en arabe — est née d'une passion inconditionnelle pour le patrimoine vestimentaire tunisien et méditerranéen.",
+  about_intro_paragraph_2: "Face à l'uniformisation de la mode mondiale, ASALA propose une vision singulière : des créations de grand apparat et des silhouettes quotidiennes qui célèbrent la richesse des broderies tunisiennes, la pureté des lins naturels et la splendeur des soies les plus précieuses.",
   about_work_image: "/hero-model.jpg",
   about_work_eyebrow: "Transmission Artisanale",
   about_work_title: "L'ATELIER DE TUNIS",
   about_work_paragraph_1: "Chaque caftan, chaque jebba et chaque takchita est façonné au cœur de nos ateliers par des maîtresses artisanes détentrices d'un savoir-faire séculaire.",
-  about_work_paragraph_2: "Le travail minutieux du fil d'or, la pose des boutons driba réalisés un à un à la main, et la précision des coupes architecturales confèrent à chaque création KINZA une noblesse incomparable.",
+  about_work_paragraph_2: "Le travail minutieux du fil d'or, la pose des boutons driba réalisés un à un à la main, et la précision des coupes architecturales confèrent à chaque création ASALA une noblesse incomparable.",
   about_work_button_label: "Découvrir la collection",
   about_work_button_url: "/collection",
   home_hero_01_image: "/hero-slide-01.png",
@@ -92,7 +86,7 @@ const defaultSections: HomeSection[] = [{
 }];
 
 const defaultCollectionTiles: CollectionTile[] = [
-  { id: "default-caftans", eyebrow: "La Signature KINZA", title: "CAFTANS", imageUrl: "/home-caftans.jpg", buttonLabel: "Découvrir", categorySlug: "caftans", sortOrder: 1 },
+  { id: "default-caftans", eyebrow: "La Signature ASALA", title: "CAFTANS", imageUrl: "/home-caftans.jpg", buttonLabel: "Découvrir", categorySlug: "caftans", sortOrder: 1 },
   { id: "default-jebbas", eyebrow: "Lins d'Exception", title: "JEBBAS", imageUrl: "/home-jebbas.png", buttonLabel: "Explorer", categorySlug: "jebbas", sortOrder: 2 },
   { id: "default-robes", eyebrow: "Lignes Fluides", title: "ROBES", imageUrl: "/home-robes.jpg", buttonLabel: "Explorer", categorySlug: "robes", sortOrder: 3 },
 ];
@@ -129,18 +123,18 @@ export const SiteContentProvider: React.FC<React.PropsWithChildren> = ({ childre
     if (contentResult.data) {
       setContent({
         ...defaultContent,
-        ...Object.fromEntries(contentResult.data.map((item) => [item.content_key, normalizeBrandText(item.value)])),
+        ...Object.fromEntries(contentResult.data.map((item) => [item.content_key, item.value])),
       });
     }
     if (!sectionsResult.error && sectionsResult.data) {
       setHomeSections(sectionsResult.data.map((item) => ({
         id: item.id,
-        eyebrow: normalizeBrandText(item.eyebrow || ""),
-        title: normalizeBrandText(item.title || ""),
-        subtitle: normalizeBrandText(item.subtitle || ""),
-        description: normalizeBrandText(item.description || ""),
+        eyebrow: item.eyebrow || "",
+        title: item.title || "",
+        subtitle: item.subtitle || "",
+        description: item.description || "",
         imageUrl: item.image_url || "/hero-model.jpg",
-        buttonLabel: normalizeBrandText(item.button_label || "Découvrir la collection"),
+        buttonLabel: item.button_label || "Découvrir la collection",
         categorySlug: item.category_slug || "",
         sortOrder: Number(item.sort_order || 0),
       })));
@@ -148,10 +142,10 @@ export const SiteContentProvider: React.FC<React.PropsWithChildren> = ({ childre
     if (!tilesResult.error && tilesResult.data) {
       setCollectionTiles(tilesResult.data.map((item) => ({
         id: item.id,
-        eyebrow: normalizeBrandText(item.eyebrow || ""),
-        title: normalizeBrandText(item.title || ""),
+        eyebrow: item.eyebrow || "",
+        title: item.title || "",
         imageUrl: item.image_url || "/hero-model.jpg",
-        buttonLabel: normalizeBrandText(item.button_label || "Découvrir"),
+        buttonLabel: item.button_label || "Découvrir",
         categorySlug: item.category_slug || "",
         sortOrder: Number(item.sort_order || 0),
       })));

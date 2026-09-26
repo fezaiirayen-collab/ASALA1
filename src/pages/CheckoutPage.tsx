@@ -151,7 +151,7 @@ const CheckoutPage: React.FC = () => {
 
   const handleFinalizeOrder = async () => {
     const newOrder: Order = {
-      id: `KINZA-${Math.floor(100000 + Math.random() * 900000)}`,
+      id: `ASALA-${Math.floor(100000 + Math.random() * 900000)}`,
       date: new Date().toLocaleDateString("fr-FR", {
         day: "numeric",
         month: "long",

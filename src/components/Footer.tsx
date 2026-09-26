@@ -70,8 +70,8 @@ const Footer: React.FC = () => {
               title: "Informations de Contact",
               content: (
                 <div className="flex flex-col gap-3 pb-5 text-[12px] text-black/65">
-                  <a href="tel:+21652374459">+216 52 374 459</a>
-                  <a href="mailto:contact@kinza.tn">contact@kinza.tn</a>
+                  <a href="tel:+21671000000">+216 71 000 000</a>
+                  <a href="mailto:contact@asala.tn">contact@asala.tn</a>
                   <Link to="/contact">Nous contacter</Link>
                 </div>
               ),
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
         {/* Main 5 columns grid */}
         <div className="hidden grid-cols-1 gap-10 border-b border-white/15 pb-16 md:grid md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           
-          {/* Col 1: KINZA Brandmark & Vision */}
+          {/* Col 1: ASALA Brandmark & Vision */}
           <div className="lg:col-span-1">
             <div className="mb-5">
               <Logo size="md" inverted />
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-[12px] text-white/70 font-light">
               <li>
                 <Link to="/a-propos" className="hover:text-white transition-colors">
-                  La Maison KINZA
+                  La Maison ASALA
                 </Link>
               </li>
               <li>
@@ -228,8 +228,8 @@ const Footer: React.FC = () => {
 
             <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-white/60 leading-relaxed">
               <p>Service Conciergerie :</p>
-              <p className="text-white font-medium mt-0.5">+216 52 374 459</p>
-              <p className="text-white/80">contact@kinza.tn</p>
+              <p className="text-white font-medium mt-0.5">+216 71 000 000</p>
+              <p className="text-white/80">contact@asala.tn</p>
             </div>
           </div>
 
@@ -245,7 +245,7 @@ const Footer: React.FC = () => {
             {subscribed ? (
               <div className="flex items-center gap-2 p-3 bg-white/10 border border-white/20 text-[11px] text-white">
                 <Check size={14} />
-                <span>Merci de votre inscription à la Maison KINZA.</span>
+                <span>Merci de votre inscription à la Maison ASALA.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="space-y-2">
@@ -274,7 +274,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom copyright & legal */}
         <div className="hidden pt-8 flex-col items-center justify-between gap-4 text-[11px] font-light text-white/50 md:flex md:flex-row">
-          <p>© {new Date().getFullYear()} KINZA • Maison de Couture Traditionnelle Tunisienne. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} ASALA • Maison de Couture Traditionnelle Tunisienne. Tous droits réservés.</p>
           <div className="flex flex-wrap gap-6">
             <Link to="/faq" className="hover:text-white transition-colors">
               Mentions Légales

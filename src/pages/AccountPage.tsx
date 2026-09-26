@@ -218,7 +218,7 @@ const AccountPage: React.FC = () => {
   const handleAuthSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!supabase) {
-      setAuthError("Le service de compte est temporairement indisponible.");
+      setAuthError("Supabase n'est pas configuré.");
       return;
     }
     if (authMode === "signup" && !hasStrongPassword(authPassword)) {
@@ -322,7 +322,7 @@ const AccountPage: React.FC = () => {
             <h1 className="mt-2 text-[34px] uppercase tracking-tight" style={{ fontFamily: '"Bodoni Moda", Georgia, serif' }}>
               MON COMPTE
             </h1>
-            <p className="mt-2 text-[12px] text-stone">Connectez-vous ou créez votre compte KINZA.</p>
+            <p className="mt-2 text-[12px] text-stone">Connectez-vous ou créez votre compte ASALA.</p>
           </div>
         </section>
 
@@ -494,7 +494,7 @@ const AccountPage: React.FC = () => {
               }`}
             >
               <span className="flex items-center gap-2.5">
-                <Heart size={15} strokeWidth={1.5} /> Coups de Cœur ({favorites.length})
+                <Heart size={15} strokeWidth={1.5} /> Coups de CÅ“ur ({favorites.length})
               </span>
               <ArrowRight size={13} strokeWidth={1.5} />
             </button>
