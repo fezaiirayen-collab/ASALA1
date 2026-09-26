@@ -43,7 +43,7 @@ const QuickViewModal: React.FC = () => {
         <button
           onClick={closeQuickView}
           className="absolute top-4 right-4 z-10 p-1.5 bg-white text-black border border-black/20 hover:border-black transition-colors cursor-pointer"
-          aria-label="Fermer l'aperçu"
+          aria-label="Fermer l'aperÃ§u"
         >
           <X size={18} strokeWidth={1.5} />
         </button>
@@ -67,7 +67,7 @@ const QuickViewModal: React.FC = () => {
                     selectedImageIdx === idx ? "border-black" : "border-black/20 opacity-60"
                   }`}
                 >
-                  <img src={img} alt="thumbnail" className="w-full h-full object-cover" />
+                  <ProductImage src={img} alt="thumbnail" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -148,7 +148,7 @@ const QuickViewModal: React.FC = () => {
                 onClick={closeQuickView}
                 className="flex-1 border border-black py-2.5 text-[11px] uppercase tracking-wider text-center hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-1.5"
               >
-                <span>Voir détails</span>
+                <span>Voir dÃ©tails</span>
                 <ArrowRight size={13} strokeWidth={1.5} />
               </Link>
             </div>
@@ -160,3 +160,4 @@ const QuickViewModal: React.FC = () => {
 };
 
 export default QuickViewModal;
+
