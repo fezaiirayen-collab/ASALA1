@@ -135,8 +135,14 @@ const CheckoutPage: React.FC = () => {
   };
 
   const handleContinueToShipping = () => {
-    if (formData.address.trim().length < 3 || formData.city.trim().length < 2 || formData.governorate.trim().length < 2) {
-      setAddressError("Veuillez renseigner une adresse, une ville et un gouvernorat valides.");
+    const missingFields = [
+      formData.address.trim().length < 3 ? "l'adresse" : "",
+      formData.city.trim().length < 2 ? "la ville" : "",
+      formData.governorate.trim().length < 2 ? "le gouvernorat" : "",
+    ].filter(Boolean);
+
+    if (missingFields.length > 0) {
+      setAddressError(`Veuillez compléter ${missingFields.join(", ")}.`);
       return;
     }
     setAddressError("");
@@ -472,6 +478,7 @@ const CheckoutPage: React.FC = () => {
                         className="w-full border border-black px-4 py-3 text-[13px] outline-none bg-white cursor-pointer"
                         required
                       >
+                        <option value="">Sélectionner un gouvernorat</option>
                         {TUNISIAN_GOVERNORATES.map((g) => (
                           <option key={g} value={g}>
                             {g}
