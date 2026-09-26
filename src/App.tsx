@@ -1,5 +1,5 @@
 // src/App.tsx
-import React from "react";
+import React, { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "@/router";
 import { CartProvider } from "@/context/CartContext";
@@ -11,7 +11,9 @@ const App: React.FC = () => {
     <SiteContentProvider>
       <CartProvider>
         <ProductProvider>
-          <RouterProvider router={router} />
+          <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-white text-[11px] uppercase tracking-[0.14em] text-stone">Chargement…</div>}>
+            <RouterProvider router={router} />
+          </Suspense>
         </ProductProvider>
       </CartProvider>
     </SiteContentProvider>

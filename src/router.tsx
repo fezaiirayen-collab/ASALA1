@@ -1,19 +1,20 @@
 // src/router.tsx
-import React, { useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "@/layouts/MainLayout";
-import HomePage from "@/pages/HomePage";
-import CollectionPage from "@/pages/CollectionPage";
-import CategoryPage from "@/pages/CategoryPage";
-import ProductPage from "@/pages/ProductPage";
-import CartPage from "@/pages/CartPage";
-import FavoritesPage from "@/pages/FavoritesPage";
-import AccountPage from "@/pages/AccountPage";
-import ResetPasswordPage from "@/pages/ResetPasswordPage";
-import CheckoutPage from "@/pages/CheckoutPage";
-import AboutPage from "@/pages/AboutPage";
-import ContactPage from "@/pages/ContactPage";
-import FaqPage from "@/pages/FaqPage";
+
+const HomePage = lazy(() => import("@/pages/HomePage"));
+const CollectionPage = lazy(() => import("@/pages/CollectionPage"));
+const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
+const ProductPage = lazy(() => import("@/pages/ProductPage"));
+const CartPage = lazy(() => import("@/pages/CartPage"));
+const FavoritesPage = lazy(() => import("@/pages/FavoritesPage"));
+const AccountPage = lazy(() => import("@/pages/AccountPage"));
+const ResetPasswordPage = lazy(() => import("@/pages/ResetPasswordPage"));
+const CheckoutPage = lazy(() => import("@/pages/CheckoutPage"));
+const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const FaqPage = lazy(() => import("@/pages/FaqPage"));
 
 const LocalAdminRedirect: React.FC = () => {
   useEffect(() => {
