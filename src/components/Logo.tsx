@@ -16,7 +16,7 @@ const Logo: React.FC<Props> = ({ className = "", size = "md", inverted = false }
     <Link
       to="/"
       className={`inline-flex flex-col items-center justify-center leading-none group transition-opacity hover:opacity-75 select-none shrink-0 ${className}`}
-      aria-label="ASALA Maison de Couture - Accueil"
+      aria-label="KINZA Maison de Couture - Accueil"
     >
       <span
         className={`font-didone font-normal tracking-wide ${colorClass}`}
@@ -24,9 +24,20 @@ const Logo: React.FC<Props> = ({ className = "", size = "md", inverted = false }
           fontFamily: '"Bodoni Moda", "Amiri", Georgia, serif',
           fontSize: arabicFontSize,
           lineHeight: 1,
+          display: "none",
         }}
       >
         أصالة
+      </span>
+      <span
+        className={`font-didone font-normal tracking-wide ${colorClass}`}
+        style={{
+          fontFamily: '"Bodoni Moda", Georgia, serif',
+          fontSize: arabicFontSize,
+          lineHeight: 1,
+        }}
+      >
+        KINZA
       </span>
       <span
         className={`font-sans font-medium uppercase mt-1 ${colorClass}`}
@@ -37,7 +48,7 @@ const Logo: React.FC<Props> = ({ className = "", size = "md", inverted = false }
           lineHeight: 1,
         }}
       >
-        ASALA
+        MAISON KINZA
       </span>
     </Link>
   );

@@ -99,7 +99,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose, links = defaultLinks }) 
             <p className="flex items-center gap-1.5 font-normal">
               <MapPin size={12} strokeWidth={1.5} className="text-black" /> Livraison partout en Tunisie
             </p>
-            <p className="text-[10px] text-stone">contact@asala.tn • +216 71 000 000</p>
+            <p className="text-[10px] text-stone">contact@kinza.tn • +216 52 374 459</p>
           </div>
         </div>
       </div>
